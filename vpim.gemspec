@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'pp'
-require 'rake'
 require './gemspec'
 require './lib/vpim/version'
 
@@ -16,20 +15,9 @@ This is a pure-ruby library for decoding and encoding vCard and iCalendar data
   s.has_rdoc          = true
   s.extra_rdoc_files  = ["README.rdoc", "CHANGES", "COPYING", "samples/README.mutt" ]
 
-  candidates = FileList[
-    'lib/vpim/**/*.rb',
-    'lib/vpim.rb',
-    'bin/*',
-    'samples/*',
-    'test/test_*.rb',
-    'COPYING',
-    'README.rdoc',
-    'CHANGES',
-  ].to_a
-
-  s.files             = candidates
-  s.test_files        = Dir.glob("test/test_*.rb")
-  s.executables       = FileList["bin/*"].map{|path| File.basename(path)}
+  s.files           = `git ls-files`.split($/)
+  s.test_files      = Dir.glob("test/test_*.rb")
+  s.executables     = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
 
   s.require_path      = "lib"
 # s.add_dependency("plist")

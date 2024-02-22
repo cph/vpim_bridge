@@ -7,7 +7,7 @@
   details.
 =end
 
-require 'vpim/enumerator'
+require 'vpim/vpim_enumerator'
 require 'vpim/field'
 require 'vpim/rfc2425'
 require 'vpim/vpim'
@@ -165,7 +165,7 @@ module Vpim
     #
     #   pref_emails = card.enum_by_name('EMAIL').select { |f| f.pref? }
     def enum_by_name(name)
-      Enumerator.new(self, Proc.new { |field| field.name?(name) })
+      VpimEnumerator.new(self, Proc.new { |field| field.name?(name) })
     end
 
     # Returns an Enumerator for each Field for which #group?(+group+) is true.
@@ -182,12 +182,12 @@ module Vpim
     #
     #   card.enum_by_group('AGROUP').to_a
     def enum_by_group(group)
-      Enumerator.new(self, Proc.new { |field| field.group?(group) })
+      VpimEnumerator.new(self, Proc.new { |field| field.group?(group) })
     end
 
     # Returns an Enumerator for each Field for which +cond+.call(field) is true.
     def enum_by_cond(cond)
-      Enumerator.new(self, cond )
+      VpimEnumerator.new(self, cond )
     end
 
     # Force card to be reencoded from the fields.

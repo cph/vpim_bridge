@@ -7,7 +7,7 @@
   details.
 =end
 
-require "vpim/enumerator"
+require "vpim/vpim_enumerator"
 
 module Vpim
   module View
