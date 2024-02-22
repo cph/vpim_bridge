@@ -7,7 +7,7 @@
   details.
 =end
 
-require "vpim/enumerator"
+require "vpim/vpim_enumerator"
 
 module Vpim
   # This is a way for an object to have multiple ways of being enumerated via
@@ -17,7 +17,7 @@ module Vpim
   #
   # TODO since 1.8, this is part of the standard library, I should rewrite vPim
   # so this can be removed.
-  class Enumerator
+  class VpimEnumerator
     include Enumerable
 
     def initialize(obj, *args)
